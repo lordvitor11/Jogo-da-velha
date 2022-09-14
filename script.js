@@ -1,19 +1,25 @@
 var player = "./assets/o.png";
 
-var btn;
-var btn1;
-var btn2;
-var btn3;
-var btn4;
-var btn5;
-var btn6;
-var btn7;
-var btn8;
+var x = 0;
+var o = 0;
+var velha = 0;
+
+var btn = null;
+var btn1 = null;
+var btn2 = null;
+var btn3 = null;
+var btn4 = null;
+var btn5 = null;
+var btn6 = null;
+var btn7 = null;
+var btn8 = null;
 
 function changePlayer() {
     if (player === "./assets/x.png") {
+        document.getElementById("vez").innerHTML = "X";
         player = "./assets/o.png"
     } else {
+        document.getElementById("vez").innerHTML = "O";
         player = "./assets/x.png"
     }
 }
@@ -27,32 +33,41 @@ function deactivateButton() {
 }
 
 function verify() {
+    var placarVelha = document.getElementById("velha");
+    var placarX = document.getElementById("x");
+    var placarO = document.getElementById("o");
+
     //  Verificação horizontal 
-    if (btn === 1 && btn1 === 1 && btn2 === 1) { reset(); }
-    else if (btn3 === 1 && btn4 === 1 && btn5 === 1) { reset(); }
-    else if (btn6 === 1 && btn7 === 1 && btn8 === 1) { reset(); }
+    if (btn === 1 && btn1 === 1 && btn2 === 1) { placarX.innerHTML = `${x + 1}`; reset();}
+    else if (btn3 === 1 && btn4 === 1 && btn5 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    else if (btn6 === 1 && btn7 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
     else {
-        if (btn === 0 && btn1 === 0 && btn2 === 0) { reset(); }
-        else if (btn3 === 0 && btn4 === 0 && btn5 === 0) { reset(); }
-        else if (btn6 === 0 && btn7 === 0 && btn8 === 0) { reset(); }
+        if (btn === 0 && btn1 === 0 && btn2 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        else if (btn3 === 0 && btn4 === 0 && btn5 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        else if (btn6 === 0 && btn7 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
     }
 
     //  Verificação vertical 
-    if (btn === 1 && btn3 === 1 && btn6 === 1) { reset(); }
-    else if (btn1 === 1 && btn4 === 1 && btn7 === 1) { reset(); }
-    else if (btn2 === 1 && btn5 === 1 && btn8 === 1) { reset(); }
+    if (btn === 1 && btn3 === 1 && btn6 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    else if (btn1 === 1 && btn4 === 1 && btn7 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    else if (btn2 === 1 && btn5 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
     else {
-        if (btn === 0 && btn3 === 0 && btn6 === 0) { reset(); }
-        else if (btn1 === 0 && btn4 === 0 && btn7 === 0) { reset(); }
-        else if (btn2 === 0 && btn5 === 0 && btn8 === 0) { reset(); }
+        if (btn === 0 && btn3 === 0 && btn6 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        else if (btn1 === 0 && btn4 === 0 && btn7 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        else if (btn2 === 0 && btn5 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
     }
 
     //  Verificação diagonal
-    if (btn === 1 && btn4 === 1 && btn8 === 1) { reset(); }
-    else if (btn2 === 1 && btn4 === 1 && btn6 === 1) { reset(); }
+    if (btn === 1 && btn4 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    else if (btn2 === 1 && btn4 === 1 && btn6 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
     else {
-        if (btn === 0 && btn4 === 0 && btn8 === 0) { reset(); }
-        else if (btn2 === 0 && btn4 === 0 && btn6 === 0) { reset(); }
+        if (btn === 0 && btn4 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        else if (btn2 === 0 && btn4 === 0 && btn6 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+    }
+
+    if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) {
+        placarVelha.innerHTML = `${velha += 1}`;
+        reset();
     }
 }
 
@@ -77,7 +92,7 @@ function reset() {
 
 function btnClick() {
     changePlayer();
-    document.getElementById("btn").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;";
+    document.getElementById("btn").style.cssText = `background-image: url(${player});`;
     btn = deactivateButton();
     
     setTimeout(function() {
@@ -87,7 +102,7 @@ function btnClick() {
 
 function btnClick1() {
     changePlayer();
-    document.getElementById("btn1").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn1").style.cssText = `background-image: url(${player});`;
     btn1 = deactivateButton();
 
     setTimeout(function() {
@@ -97,7 +112,7 @@ function btnClick1() {
 
 function btnClick2() {
     changePlayer();
-    document.getElementById("btn2").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn2").style.cssText = `background-image: url(${player});`;
     btn2 = deactivateButton();
 
     setTimeout(function() {
@@ -107,7 +122,7 @@ function btnClick2() {
 
 function btnClick3() {
     changePlayer();
-    document.getElementById("btn3").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn3").style.cssText = `background-image: url(${player});`;
     btn3 = deactivateButton();
 
     setTimeout(function() {
@@ -117,7 +132,7 @@ function btnClick3() {
 
 function btnClick4() {
     changePlayer();
-    document.getElementById("btn4").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn4").style.cssText = `background-image: url(${player});`;
     btn4 = deactivateButton();
 
     setTimeout(function() {
@@ -127,7 +142,7 @@ function btnClick4() {
 
 function btnClick5() {
     changePlayer();
-    document.getElementById("btn5").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn5").style.cssText = `background-image: url(${player});`;
     btn5 = deactivateButton();
 
     setTimeout(function() {
@@ -137,7 +152,7 @@ function btnClick5() {
 
 function btnClick6() {
     changePlayer();
-    document.getElementById("btn6").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn6").style.cssText = `background-image: url(${player});`;
     btn6 = deactivateButton();
 
     setTimeout(function() {
@@ -147,7 +162,7 @@ function btnClick6() {
 
 function btnClick7() {
     changePlayer();
-    document.getElementById("btn7").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn7").style.cssText = `background-image: url(${player});`;
     btn7 = deactivateButton();
 
     setTimeout(function() {
@@ -157,7 +172,7 @@ function btnClick7() {
 
 function btnClick8() {
     changePlayer();
-    document.getElementById("btn8").style.cssText = `background-image: url(${player});` + "background-repeat: no-repeat;" + "background-position: center;" + "background-size: cover;"; 
+    document.getElementById("btn8").style.cssText = `background-image: url(${player});`;
     btn8 = deactivateButton();
 
     setTimeout(function() {
