@@ -105,6 +105,16 @@ function reset() {
     btn7 = null;
     btn8 = null;
 
+    document.getElementById("btn").disabled = false;
+    document.getElementById("btn1").disabled = false;
+    document.getElementById("btn2").disabled = false;
+    document.getElementById("btn3").disabled = false;
+    document.getElementById("btn4").disabled = false;
+    document.getElementById("btn5").disabled = false;
+    document.getElementById("btn6").disabled = false;
+    document.getElementById("btn7").disabled = false;
+    document.getElementById("btn8").disabled = false;
+
     var elements = document.getElementsByTagName("button");
     for (c = 0; elements.length; c++) {
         elements[c].style.cssText = "background-color: #7D7ABC;";
@@ -116,15 +126,20 @@ function btnClick() {
     document.getElementById("btn").style.cssText = `background-image: url(${player});`;
     btn = deactivateButton();
     
+    document.getElementById("btn").disabled = true;
+
     setTimeout(function() {
         verify();
     }, 80)
+
 }
 
 function btnClick1() {
     changePlayer();
     document.getElementById("btn1").style.cssText = `background-image: url(${player});`;
     btn1 = deactivateButton();
+
+    document.getElementById("btn1").disabled = true;
 
     setTimeout(function() {
         verify();
@@ -136,6 +151,8 @@ function btnClick2() {
     document.getElementById("btn2").style.cssText = `background-image: url(${player});`;
     btn2 = deactivateButton();
 
+    document.getElementById("btn2").disabled = true;
+
     setTimeout(function() {
         verify();
     }, 80)
@@ -145,6 +162,8 @@ function btnClick3() {
     changePlayer();
     document.getElementById("btn3").style.cssText = `background-image: url(${player});`;
     btn3 = deactivateButton();
+
+    document.getElementById("btn3").disabled = true;
 
     setTimeout(function() {
         verify();
@@ -156,6 +175,8 @@ function btnClick4() {
     document.getElementById("btn4").style.cssText = `background-image: url(${player});`;
     btn4 = deactivateButton();
 
+    document.getElementById("btn4").disabled = true;
+
     setTimeout(function() {
         verify();
     }, 80)
@@ -165,6 +186,8 @@ function btnClick5() {
     changePlayer();
     document.getElementById("btn5").style.cssText = `background-image: url(${player});`;
     btn5 = deactivateButton();
+
+    document.getElementById("btn5").disabled = true;
 
     setTimeout(function() {
         verify();
@@ -176,6 +199,8 @@ function btnClick6() {
     document.getElementById("btn6").style.cssText = `background-image: url(${player});`;
     btn6 = deactivateButton();
 
+    document.getElementById("btn6").disabled = true;
+
     setTimeout(function() {
         verify();
     }, 80)
@@ -186,6 +211,8 @@ function btnClick7() {
     document.getElementById("btn7").style.cssText = `background-image: url(${player});`;
     btn7 = deactivateButton();
 
+    document.getElementById("btn7").disabled = true;
+
     setTimeout(function() {
         verify();
     }, 80)
@@ -195,6 +222,8 @@ function btnClick8() {
     changePlayer();
     document.getElementById("btn8").style.cssText = `background-image: url(${player});`;
     btn8 = deactivateButton();
+
+    document.getElementById("btn8").disabled = true;
 
     setTimeout(function() {
         verify();
