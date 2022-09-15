@@ -56,6 +56,12 @@ function changeStatus(ganhador) {
     }
 
     popup.style.display = "flex";
+    var buttons = document.getElementsByTagName("button");
+    for (c = 0; c < buttons.length; c++) {
+        if (buttons[c].textContent !== "OK") {
+            buttons[c].disabled = true;
+        }
+    }
 }
 
 function verify() {
