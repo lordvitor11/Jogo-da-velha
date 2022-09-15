@@ -32,42 +32,63 @@ function deactivateButton() {
     }
 }
 
-function verify() {
+function okButton() {
+    popup.style.display = "none";
+    reset();
+}
+
+function changeStatus(ganhador) {
     var placarVelha = document.getElementById("velha");
     var placarX = document.getElementById("x");
     var placarO = document.getElementById("o");
+    var popup = document.getElementById("popup");
+    var popupText = document.getElementById("popupText")
 
+    if (ganhador === "x") {
+        placarX.innerHTML = `${x += 1}`;
+        popupText.innerHTML = "X venceu!";
+    } else if (ganhador === "o") {
+        placarO.innerHTML = `${o += 1}`;
+        popupText.innerHTML = "O venceu!";
+    } else {
+        placarVelha.innerHTML = `${velha += 1}`;
+        popupText.innerHTML = "Deu velha!";
+    }
+
+    popup.style.display = "flex";
+}
+
+function verify() {
     //  Verificação horizontal 
-    if (btn === 1 && btn1 === 1 && btn2 === 1) { placarX.innerHTML = `${x + 1}`; reset();}
-    else if (btn3 === 1 && btn4 === 1 && btn5 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
-    else if (btn6 === 1 && btn7 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    if (btn === 1 && btn1 === 1 && btn2 === 1) { changeStatus("x"); }
+    else if (btn3 === 1 && btn4 === 1 && btn5 === 1) { changeStatus("x"); }
+    else if (btn6 === 1 && btn7 === 1 && btn8 === 1) { changeStatus("x"); }
     else {
-        if (btn === 0 && btn1 === 0 && btn2 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
-        else if (btn3 === 0 && btn4 === 0 && btn5 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
-        else if (btn6 === 0 && btn7 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        if (btn === 0 && btn1 === 0 && btn2 === 0) { changeStatus("o"); }
+        else if (btn3 === 0 && btn4 === 0 && btn5 === 0) { changeStatus("o"); }
+        else if (btn6 === 0 && btn7 === 0 && btn8 === 0) { changeStatus("o"); }
     }
 
     //  Verificação vertical 
-    if (btn === 1 && btn3 === 1 && btn6 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
-    else if (btn1 === 1 && btn4 === 1 && btn7 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
-    else if (btn2 === 1 && btn5 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    if (btn === 1 && btn3 === 1 && btn6 === 1) { changeStatus("x"); }
+    else if (btn1 === 1 && btn4 === 1 && btn7 === 1) { changeStatus("x"); }
+    else if (btn2 === 1 && btn5 === 1 && btn8 === 1) { changeStatus("x"); }
     else {
-        if (btn === 0 && btn3 === 0 && btn6 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
-        else if (btn1 === 0 && btn4 === 0 && btn7 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
-        else if (btn2 === 0 && btn5 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        if (btn === 0 && btn3 === 0 && btn6 === 0) { changeStatus("o"); }
+        else if (btn1 === 0 && btn4 === 0 && btn7 === 0) { changeStatus("o"); }
+        else if (btn2 === 0 && btn5 === 0 && btn8 === 0) { changeStatus("o"); }
     }
 
     //  Verificação diagonal
-    if (btn === 1 && btn4 === 1 && btn8 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
-    else if (btn2 === 1 && btn4 === 1 && btn6 === 1) { placarX.innerHTML = `${x + 1}`; reset(); }
+    if (btn === 1 && btn4 === 1 && btn8 === 1) { changeStatus("x"); }
+    else if (btn2 === 1 && btn4 === 1 && btn6 === 1) { changeStatus("x"); }
     else {
-        if (btn === 0 && btn4 === 0 && btn8 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
-        else if (btn2 === 0 && btn4 === 0 && btn6 === 0) { placarO.innerHTML = `${o + 1}`; reset(); }
+        if (btn === 0 && btn4 === 0 && btn8 === 0) { changeStatus("o"); }
+        else if (btn2 === 0 && btn4 === 0 && btn6 === 0) { changeStatus("o"); }
     }
 
     if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) {
-        placarVelha.innerHTML = `${velha += 1}`;
-        reset();
+        changeStatus("velha");
     }
 }
 
