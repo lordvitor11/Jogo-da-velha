@@ -33,7 +33,14 @@ function deactivateButton() {
 }
 
 function okButton() {
-    popup.style.display = "none";
+    if (popup.classList.contains("hide-popup")) {
+        popup.classList.remove("hide-popup");
+    } else {
+        popup.classList.remove("show-popup");    
+    }
+
+    popup.classList.add("init");
+
     reset();
 }
 
@@ -55,7 +62,18 @@ function changeStatus(ganhador) {
         popupText.innerHTML = "Deu velha!";
     }
 
-    popup.style.display = "flex";
+    // popup.style.display = "flex";
+    if (popup.classList.contains("init")) {
+        popup.classList.remove("init");
+        popup.classList.add("show-popup");
+    } else if (popup.classList.contains("hide-popup")) {
+        popup.classList.remove("hide-popup");
+        popup.classList.add("show-popup");
+    } else {
+        popup.classList.remove("show-popup");
+        popup.classList.add("hide-popup");
+    }
+    
     var buttons = document.getElementsByTagName("button");
     for (c = 0; c < buttons.length; c++) {
         if (buttons[c].textContent !== "OK") {
@@ -65,37 +83,17 @@ function changeStatus(ganhador) {
 }
 
 function verify() {
-    //  Verificação horizontal 
-    if (btn === 1 && btn1 === 1 && btn2 === 1) { changeStatus("x"); }
-    else if (btn3 === 1 && btn4 === 1 && btn5 === 1) { changeStatus("x"); }
-    else if (btn6 === 1 && btn7 === 1 && btn8 === 1) { changeStatus("x"); }
-    else {
-        if (btn === 0 && btn1 === 0 && btn2 === 0) { changeStatus("o"); }
-        else if (btn3 === 0 && btn4 === 0 && btn5 === 0) { changeStatus("o"); }
-        else if (btn6 === 0 && btn7 === 0 && btn8 === 0) { changeStatus("o"); }
-    }
+    let buttonList = [JSON.stringify([btn, btn1, btn2]), JSON.stringify([btn3, btn4, btn5]), JSON.stringify([btn6, btn7, btn8]),
+                      JSON.stringify([btn, btn3, btn6]), JSON.stringify([btn1, btn4, btn7]), JSON.stringify([btn2, btn5, btn8]),
+                      [btn, btn4, btn8], [btn2, btn4, btn6]]
 
-    //  Verificação vertical 
-    if (btn === 1 && btn3 === 1 && btn6 === 1) { changeStatus("x"); }
-    else if (btn1 === 1 && btn4 === 1 && btn7 === 1) { changeStatus("x"); }
-    else if (btn2 === 1 && btn5 === 1 && btn8 === 1) { changeStatus("x"); }
-    else {
-        if (btn === 0 && btn3 === 0 && btn6 === 0) { changeStatus("o"); }
-        else if (btn1 === 0 && btn4 === 0 && btn7 === 0) { changeStatus("o"); }
-        else if (btn2 === 0 && btn5 === 0 && btn8 === 0) { changeStatus("o"); }
-    }
-
-    //  Verificação diagonal
-    if (btn === 1 && btn4 === 1 && btn8 === 1) { changeStatus("x"); }
-    else if (btn2 === 1 && btn4 === 1 && btn6 === 1) { changeStatus("x"); }
-    else {
-        if (btn === 0 && btn4 === 0 && btn8 === 0) { changeStatus("o"); }
-        else if (btn2 === 0 && btn4 === 0 && btn6 === 0) { changeStatus("o"); }
-    }
-
-    if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) {
-        changeStatus("velha");
-    }
+    if (buttonList[0] === "[1,1,1]" || buttonList[1] === "[1,1,1]" || buttonList[2] === "[1,1,1]") { changeStatus("x"); }
+    else if (buttonList[3] === "[1,1,1]" || buttonList[4] === "[1,1,1]" || buttonList[5] === "[1,1,1]") {  changeStatus("x"); }
+    else if (JSON.stringify(buttonList[6]) === "[1,1,1]" || JSON.stringify(buttonList[7]) === "[1,1,1]") { changeStatus("x"); }
+    else if (buttonList[0] === "[0,0,0]" || buttonList[1] === "[0,0,0]" || buttonList[2] === "[0,0,0]") { changeStatus("o"); }
+    else if (buttonList[3] === "[0,0,0]" || buttonList[4] === "[0,0,0]" || buttonList[5] === "[0,0,0]") {  changeStatus("o"); }
+    else if (JSON.stringify(buttonList[6]) === "[0,0,0]" || JSON.stringify(buttonList[7]) === "[0,0,0]") { changeStatus("o"); }
+    else if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) { changeStatus("velha"); }
 }
 
 function reset() {

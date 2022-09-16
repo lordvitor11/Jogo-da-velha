@@ -69,7 +69,6 @@ div.container section.sec2 button {
 }
 
 #popup {
-    display: none;
     flex-direction: column;
     background-color: black;
     position: absolute;
@@ -82,6 +81,18 @@ div.container section.sec2 button {
     justify-items: center;
     align-items: center;
 
+}
+
+.init {
+    opacity: 0;
+}
+
+.hide-popup {
+    animation: toTop 0.5s 0s backwards;
+}
+
+.show-popup {
+    animation: fromTop 0.5s 0s backwards;
 }
 
 #popup button {
@@ -150,3 +161,26 @@ div.container section.sec2 button {
         width: 350px;
     }
 }
+
+
+/* ANIMATION  */
+
+@keyframes fromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    } to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes toTop {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    } to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
