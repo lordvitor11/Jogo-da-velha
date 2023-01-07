@@ -39,6 +39,17 @@ function okButton() {
         popup.classList.remove("show-popup");    
     }
 
+    if (blackscreen.classList.contains("hide-blackscreen")) {
+        blackscreen.classList.remove("hide-blackscreen");
+        blackscreen.style.display = flex;
+    } else {
+        blackscreen.classList.remove("show-blackscreen");    
+        setTimeout(() => {
+            blackscreen.style.display = none;
+        }, 499)
+    }
+
+    blackscreen.classList.add("init");
     popup.classList.add("init");
 
     reset();
@@ -50,6 +61,7 @@ function changeStatus(ganhador) {
     var placarO = document.getElementById("o");
     var popup = document.getElementById("popup");
     var popupText = document.getElementById("popupText")
+    var blackscreen = document.getElementById("blackscreen")
 
     if (ganhador === "x") {
         placarX.innerHTML = `${x += 1}`;
@@ -73,6 +85,22 @@ function changeStatus(ganhador) {
         popup.classList.remove("show-popup");
         popup.classList.add("hide-popup");
     }
+
+    if (blackscreen.classList.contains("init")) {
+        blackscreen.classList.remove("init");
+        blackscreen.classList.add("show-blackscreen");
+        blackscreen.style.display = block;
+    } else if (blackscreen.classList.contains("hide-blackscreen")) {
+        blackscreen.classList.remove("hide-blackscreen");
+        blackscreen.classList.add("show-blackscreen");
+        blackscreen.style.display = block;
+    } else {
+        blackscreen.classList.remove("show-blackscreen");
+        blackscreen.classList.add("hide-blackscreen");
+        setTimeout(() => {
+            blackscreen.style.display = none;
+        }, 499)
+    }
     
     var buttons = document.getElementsByTagName("button");
     for (c = 0; c < buttons.length; c++) {
@@ -83,17 +111,30 @@ function changeStatus(ganhador) {
 }
 
 function verify() {
+    let ganhador = "";
     let buttonList = [JSON.stringify([btn, btn1, btn2]), JSON.stringify([btn3, btn4, btn5]), JSON.stringify([btn6, btn7, btn8]),
                       JSON.stringify([btn, btn3, btn6]), JSON.stringify([btn1, btn4, btn7]), JSON.stringify([btn2, btn5, btn8]),
                       [btn, btn4, btn8], [btn2, btn4, btn6]]
 
-    if (buttonList[0] === "[1,1,1]" || buttonList[1] === "[1,1,1]" || buttonList[2] === "[1,1,1]") { changeStatus("x"); }
-    else if (buttonList[3] === "[1,1,1]" || buttonList[4] === "[1,1,1]" || buttonList[5] === "[1,1,1]") {  changeStatus("x"); }
-    else if (JSON.stringify(buttonList[6]) === "[1,1,1]" || JSON.stringify(buttonList[7]) === "[1,1,1]") { changeStatus("x"); }
-    else if (buttonList[0] === "[0,0,0]" || buttonList[1] === "[0,0,0]" || buttonList[2] === "[0,0,0]") { changeStatus("o"); }
-    else if (buttonList[3] === "[0,0,0]" || buttonList[4] === "[0,0,0]" || buttonList[5] === "[0,0,0]") {  changeStatus("o"); }
-    else if (JSON.stringify(buttonList[6]) === "[0,0,0]" || JSON.stringify(buttonList[7]) === "[0,0,0]") { changeStatus("o"); }
-    else if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) { changeStatus("velha"); }
+    if (buttonList[0] === "[1,1,1]" || buttonList[1] === "[1,1,1]" || buttonList[2] === "[1,1,1]") { ganhador = "x"; }
+    else if (buttonList[3] === "[1,1,1]" || buttonList[4] === "[1,1,1]" || buttonList[5] === "[1,1,1]") {  ganhador = "x"; }
+    else if (JSON.stringify(buttonList[6]) === "[1,1,1]" || JSON.stringify(buttonList[7]) === "[1,1,1]") { ganhador = "x"; }
+    else if (buttonList[0] === "[0,0,0]" || buttonList[1] === "[0,0,0]" || buttonList[2] === "[0,0,0]") { ganhador = "o"; }
+    else if (buttonList[3] === "[0,0,0]" || buttonList[4] === "[0,0,0]" || buttonList[5] === "[0,0,0]") {  ganhador = "o"; }
+    else if (JSON.stringify(buttonList[6]) === "[0,0,0]" || JSON.stringify(buttonList[7]) === "[0,0,0]") { ganhador = "o"; }
+    else if (btn !== null && btn1 !== null && btn2 !== null && btn3 !== null && btn4 !== null && btn5 !== null && btn6 !== null && btn7 !== null && btn8 !== null) { ganhador = "velha"; }
+
+    if (ganhador != "") {
+        let btns = document.getElementsByTagName("button");
+
+        if (ganhador == "x") {
+            changeStatus(ganhador);
+        } else if (ganhador == "o") {
+            changeStatus(ganhador);
+        } else {
+            changeStatus(ganhador);
+        }
+    }    
 }
 
 function reset() {
